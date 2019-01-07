@@ -1,0 +1,14 @@
+namespace: ${namespace}
+stacker_bucket: ${stacker_bucket_name}
+
+sys_path: ./
+
+stacks:
+  vpc:
+    template_path: templates/vpc_publicprivate.yml  # also supports json templates
+    variables:
+      VpcCIDR: ${default vpc_cidr::172.31.0.0/16}
+      PublicSubnet1CIDR: ${default public_subnet1_cidr::172.31.0.0/24}
+      PublicSubnet2CIDR: ${default public_subnet2_cidr::172.31.1.0/24}
+      PrivateSubnet1CIDR: ${default private_subnet1_cidr::172.31.3.0/24}
+      PrivateSubnet2CIDR: ${default private_subnet2_cidr::172.31.2.0/24}

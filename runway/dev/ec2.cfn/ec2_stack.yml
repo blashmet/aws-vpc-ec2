@@ -1,0 +1,18 @@
+namespace: ${namespace}
+stacker_bucket: ${stacker_bucket_name}
+
+sys_path: ./
+
+stacks:
+
+  ec2:
+
+    template_path: templates/ec2_instance.yml
+
+    variables:
+      VpcId: ${xref runway-common-vpc::PubPrivateVPCID} #from stack lookup
+      Subnet: ${xref runway-common-vpc::PublicSubnet1ID} #from stack lookup
+      ImageId: ${image_id} #from dev-us-east-2.env
+      KeyName: ${default key_name::beanstalk} #from dev-us-east-2.env
+      InstanceType: ${default instance_type::t2.micro} #from dev-us-east-2.env
+      SSHLocation: ${default ssh_allowed_source::127.0.0.1/32} #from dev-us-east-2.env

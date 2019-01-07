@@ -1,0 +1,11 @@
+---
+# Order that modules will be deployed.
+deployments:
+
+  - modules:
+      - vpc.cfn
+
+    regions:
+      - us-east-2
+
+ignore_git_branch: true

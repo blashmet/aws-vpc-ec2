@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  Creates an ec2 instance in the specified subnet, and attaches
+  the security group created in this template
+Parameters:
+
+  VpcId:
+    Type: String
+
+  KeyName:
+    Type: 'AWS::EC2::KeyPair::KeyName'
+
+  InstanceType:
+    Type: String
+
+  SSHLocation:
+    Type: String
+
+  ImageId:
+    Type: String
+
+  Subnet:
+    Type: String
+
+Resources:
+
+  EC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceType
+      SecurityGroupIds:
+        - !Ref InstanceSecurityGroup
+      KeyName: !Ref KeyName
+      ImageId: !Ref ImageId
+      SubnetId: !Ref Subnet
+      Tags:
+        -
+          Key: Name
+          Value: runway-demo-instance
+
+  InstanceSecurityGroup:
+
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref VpcId
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: !Ref SSHLocation
