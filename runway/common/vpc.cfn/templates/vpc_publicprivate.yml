@@ -20,7 +20,6 @@ Parameters:
       Description: Please enter the IP range (CIDR notation) for the private subnet in the second Availability Zone
       Type: String
 
-
 Resources:
 
   PubPrivateVPC:
