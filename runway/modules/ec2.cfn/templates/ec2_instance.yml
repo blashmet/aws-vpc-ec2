@@ -7,6 +7,9 @@ Parameters:
   VpcId:
     Type: String
 
+  Environment:
+    Type: String
+
   KeyName:
     Type: 'AWS::EC2::KeyPair::KeyName'
 
@@ -36,7 +39,13 @@ Resources:
       Tags:
         -
           Key: Name
-          Value: runway-demo-instance
+          Value:
+            !Join
+              - "-"
+              - - runway
+                - ec2
+                - !Ref Environment
+        
 
   InstanceSecurityGroup:
 

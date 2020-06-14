@@ -1,0 +1,9 @@
+namespace: ${namespace}
+sys_path: ./
+
+stacks:
+  ec2-key:
+    template_path: ../../modules/security/ec2_keys.cfn/templates/ec2_keys.yml  
+    variables:     
+      KeyPairName: ${keypair_name}
+      PrivateKeyName: ${private_key_name}

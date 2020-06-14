@@ -1,11 +1,9 @@
 namespace: ${namespace}
-cfngin_bucket: ${cfngin_bucket_name}
-
 sys_path: ./
 
 stacks:
   vpc:
-    template_path: templates/vpc_publicprivate.yml
+    template_path: ../../modules/networking/vpc.cfn/templates/vpc_publicprivate.yml
     variables:
       VpcCIDR: ${vpc_cidr}
       PublicSubnet1CIDR: ${public_subnet1_cidr}

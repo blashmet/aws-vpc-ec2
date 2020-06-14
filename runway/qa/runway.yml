@@ -3,9 +3,7 @@
 deployments:
 
   - modules:
-      - vpc.cfn
-      - ec2_key_provider.cfn
-      - ec2_keys.cfn
+      - ec2.cfn
 
     regions:
       - us-east-2
